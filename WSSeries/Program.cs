@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<SeriesDbContext>(options =>
-  options.UseNpgsql(builder.Configuration.GetConnectionString("SeriesContext")));
+  options.UseNpgsql(builder.Configuration.GetConnectionString("SeriesDbContextRemote")));
 
 // Add services to the container.
 
