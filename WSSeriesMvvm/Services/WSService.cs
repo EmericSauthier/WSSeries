@@ -52,7 +52,7 @@ namespace WSSeriesMvvm.Services
         {
             try
             {
-                using var response = await client.PostAsJsonAsync<Serie>(client.BaseAddress, serie);
+                var response = await client.PostAsJsonAsync<Serie>(client.BaseAddress, serie);
                 return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
             }
             catch (Exception)

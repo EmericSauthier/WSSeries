@@ -13,30 +13,45 @@ namespace WSSeriesMvvm.ViewModels
 {
     public class CreationSerieViewModel : ObservableObject
     {
-        public Serie SerieToAdd { get; set; }
+        private Serie serieToAdd;
+        public Serie SerieToAdd {
+            get { return this.serieToAdd; }
+            set
+            {
+                this.serieToAdd = value;
+                OnPropertyChanged("SerieToAdd");
+            }
+        }
         public IRelayCommand BtnPostSerie { get; }
 
         public CreationSerieViewModel()
         {
             this.SerieToAdd = new Serie();
-            this.SerieToAdd.NbSaisons = 0;
-            this.SerieToAdd.NbEpisodes = 0;
-            this.SerieToAdd.AnneeCreation = 0;
 
             this.BtnPostSerie = new RelayCommand(ActionPostSerie);
         }
 
-        public void ActionPostSerie()
+        public async void ActionPostSerie()
         {
-            WSService service = new WSService("https://apiseriesemeric.azurewebsites.net/api/");
-
+            WSService service = new WSService("https://apiseriesemeric.azurewebsites.net/api/series");
 
             if (String.IsNullOrWhiteSpace(this.SerieToAdd.Titre))
             {
                 MessageAsync("Renseignez un titre", "Erreur");
+                return;
             }
 
+            var result = await service.PostSerieAsync(this.SerieToAdd);
 
+            if (result)
+            {
+                this.SerieToAdd = new Serie();
+                MessageAsync("Ajout réussi !", "Succès");
+            }
+            else
+            {
+                MessageAsync("Echec de l'ajout", "Erreur");
+            }
         }
 
         private async void MessageAsync(string message, string title)

@@ -13,9 +13,9 @@ namespace WSSeriesMvvm.Models
         private int serieId;
         private string titre;
         private string? resume;
-        private int? nbSaisons;
-        private int? nbEpisodes;
-        private int? anneeCreation;
+        private int nbSaisons;
+        private int nbEpisodes;
+        private int anneeCreation;
         private string? network;
 
         public int SerieId
@@ -54,7 +54,7 @@ namespace WSSeriesMvvm.Models
                 resume = value;
             }
         }
-        public int? NbSaisons
+        public int NbSaisons
         {
             get
             {
@@ -66,7 +66,7 @@ namespace WSSeriesMvvm.Models
                 nbSaisons = value;
             }
         }
-        public int? NbEpisodes
+        public int NbEpisodes
         {
             get
             {
@@ -78,7 +78,7 @@ namespace WSSeriesMvvm.Models
                 nbEpisodes = value;
             }
         }
-        public int? AnneeCreation
+        public int AnneeCreation
         {
             get
             {
@@ -110,7 +110,7 @@ namespace WSSeriesMvvm.Models
             this.SerieId = serieid;
             this.Titre = titre;
         }
-        public Serie(int serieid, string titre, string? resume, int? nbsaisons, int? nbepisodes, int? anneecreation, string? network) : this(serieid, titre)
+        public Serie(int serieid, string titre, string? resume, int nbsaisons, int nbepisodes, int anneecreation, string? network) : this(serieid, titre)
         {
             this.Resume = resume;
             this.NbSaisons = nbsaisons;

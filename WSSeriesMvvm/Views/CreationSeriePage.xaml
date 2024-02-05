@@ -50,7 +50,7 @@
             HorizontalTextAlignment="Center"
             RelativePanel.Below="txtBox_resume"
             Text="Nb saisons" />
-        <TextBox
+        <NumberBox
             Name="txtBox_nbSaisons"
             Width="100"
             Margin="250,5,250,5"
@@ -64,7 +64,7 @@
             HorizontalTextAlignment="Center"
             RelativePanel.Below="txtBox_nbSaisons"
             Text="Nb épisodes" />
-        <TextBox
+        <NumberBox
             Name="txtBox_nbEpisodes"
             Width="100"
             Margin="250,5,250,5"
@@ -78,7 +78,7 @@
             HorizontalTextAlignment="Center"
             RelativePanel.Below="txtBox_nbEpisodes"
             Text="Année création" />
-        <TextBox
+        <NumberBox
             Name="txtBox_annee"
             Width="100"
             Margin="250,5,250,5"
