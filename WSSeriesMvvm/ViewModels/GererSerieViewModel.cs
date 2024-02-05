@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WSSeriesMvvm.Models;
+using WSSeriesMvvm.Services;
 
 namespace WSSeriesMvvm.ViewModels
 {
     public class GererSerieViewModel : ObservableObject
     {
         private Serie serieToShow;
+        private int idSerie;
         public Serie SerieToShow
         {
             get { return this.serieToShow; }
@@ -21,7 +23,14 @@ namespace WSSeriesMvvm.ViewModels
                 OnPropertyChanged("SerieToShow");
             }
         }
-        public int IdSerie { get; set; }
+        public int IdSerie {
+            get { return this.idSerie; }
+            set
+            {
+                this.idSerie = value;
+                OnPropertyChanged("IdSerie");
+            }
+        }
         public IRelayCommand BtnGetSerie { get; }
         public IRelayCommand BtnPutSerie { get; }
         public IRelayCommand BtnDeleteSerie { get; }
@@ -33,17 +42,87 @@ namespace WSSeriesMvvm.ViewModels
             this.BtnDeleteSerie = new RelayCommand(ActionDeleteSerie);
         }
 
-        public void ActionGetSerie()
+        public async void ActionGetSerie()
         {
+            WSService service = new WSService("https://apiseriesemeric.azurewebsites.net/api/series");
 
+            if (this.IdSerie == 0)
+            {
+                MessageAsync("Entrez l'id de la série", "Erreur");
+                return;
+            }
+
+            var result = await service.GetSerieAsync(this.IdSerie);
+
+            if (result != null)
+            {
+                this.SerieToShow = result;
+            }
+            else
+            {
+                MessageAsync("Série inconnue", "Erreur");
+            }
         }
-        public void ActionPutSerie()
+        public async void ActionPutSerie()
         {
+            WSService service = new WSService("https://apiseriesemeric.azurewebsites.net/api/series");
 
+            if (this.IdSerie == 0)
+            {
+                MessageAsync("Sélectionnez une série", "Erreur");
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(this.SerieToShow.Titre))
+            {
+                MessageAsync("Renseignez un titre", "Erreur");
+                return;
+            }
+
+            var result = await service.PutSerieAsync(this.SerieToShow.SerieId, this.SerieToShow);
+
+            if (result)
+            {
+                MessageAsync("Modification réussie !", "Succès");
+            }
+            else
+            {
+                MessageAsync("Echec de la modification", "Erreur");
+            }
         }
-        public void ActionDeleteSerie()
+        public async void ActionDeleteSerie()
         {
+            WSService service = new WSService("https://apiseriesemeric.azurewebsites.net/api/series");
 
+            if (this.IdSerie == 0)
+            {
+                MessageAsync("Sélectionnez une série", "Erreur");
+                return;
+            }
+
+            var result = await service.DeleteSerieAsync(this.SerieToShow.SerieId);
+
+            if (result)
+            {
+                MessageAsync("Suppression effectuée !", "Succès");
+            }
+            else
+            {
+                MessageAsync("Echec de la suppression", "Erreur");
+            }
+        }
+
+        private async void MessageAsync(string message, string title)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "Ok"
+            };
+
+            dialog.XamlRoot = App.MainRoot.XamlRoot;
+            ContentDialogResult result = await dialog.ShowAsync();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace WSSeriesMvvm.ViewModels
     public class CreationSerieViewModel : ObservableObject
     {
         private Serie serieToAdd;
+
         public Serie SerieToAdd {
             get { return this.serieToAdd; }
             set

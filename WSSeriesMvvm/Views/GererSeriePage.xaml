@@ -14,12 +14,35 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         AlignHorizontalCenterWithPanel="True">
+
+        <TextBlock
+            Name="txtBlock_idserie"
+            Width="200"
+            Margin="0,5,0,0"
+            HorizontalTextAlignment="Center"
+            Text="Titre" />
+        <NumberBox
+            Name="txtBox_idserie"
+            Width="200"
+            Margin="0,5,0,5"
+            RelativePanel.Below="txtBlock_idserie"
+            Text="{Binding IdSerie, Mode=TwoWay}" />
+
+        <Button
+            Name="bt_rechercher"
+            Width="200"
+            Margin="200,20,200,20"
+            Command="{Binding BtnGetSerie}"
+            Content="Rechercher"
+            RelativePanel.Below="txtBox_idserie"/>
+
         <TextBlock
             Name="txtBlock_titre"
             Width="600"
             Margin="0,5,0,0"
             HorizontalTextAlignment="Center"
-            Text="Titre" />
+            Text="Titre"
+            RelativePanel.Below="bt_rechercher" />
         <TextBox
             Name="txtBox_titre"
             Width="600"
