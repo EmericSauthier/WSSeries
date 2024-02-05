@@ -33,6 +33,23 @@ public partial class Serie
     [StringLength(50)]
     public string? Network { get; set; }
 
+
+    public Serie(int serieid, string titre)
+    {
+        this.Serieid = serieid;
+        this.Titre = titre;
+    }
+
+    public Serie(int serieid, string titre, string? resume, int? nbsaisons, int? nbepisodes, int? anneecreation, string? network) : this(serieid,titre)
+    {
+        this.Resume = resume;
+        this.Nbsaisons = nbsaisons;
+        this.Nbepisodes = nbepisodes;
+        this.Anneecreation = anneecreation;
+        this.Network = network;
+    }
+
+
     public override bool Equals(object? obj)
     {
         return obj is Serie serie &&
