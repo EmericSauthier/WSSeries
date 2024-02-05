@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WSSeriesMvvm (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WSSeriesMvvm (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
