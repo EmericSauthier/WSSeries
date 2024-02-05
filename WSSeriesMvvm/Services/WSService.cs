@@ -13,6 +13,8 @@ namespace WSSeriesMvvm.Services
     public class WSService : IService
     {
         private HttpClient client;
+
+
         public WSService(string uri)
         {
             client = new HttpClient();
@@ -22,12 +24,11 @@ namespace WSSeriesMvvm.Services
         }
 
 
-
-        public async Task<List<Serie>> GetSeriesAsync(string nomControleur)
+        public async Task<List<Serie>> GetSeriesAsync()
         {
             try
             {
-                return await client.GetFromJsonAsync<List<Serie>>(nomControleur);
+                return await client.GetFromJsonAsync<List<Serie>>(client.BaseAddress);
             }
             catch (Exception)
             {
@@ -35,11 +36,11 @@ namespace WSSeriesMvvm.Services
             }
         }
 
-        public async Task<Serie> GetSerieAsync(string nomControleur, int id)
+        public async Task<Serie> GetSerieAsync(int id)
         {
             try
             {
-                return await client.GetFromJsonAsync<Serie>(String.Concat(nomControleur, "/", id));
+                return await client.GetFromJsonAsync<Serie>(String.Concat(client.BaseAddress, "/", id));
             }
             catch (Exception)
             {
@@ -47,42 +48,42 @@ namespace WSSeriesMvvm.Services
             }
         }
 
-        public async Task<HttpResponseMessage> PostSerieAsync(string nomControleur, Serie serie)
+        public async Task<bool> PostSerieAsync(Serie serie)
         {
             try
             {
-                using var response = await client.PostAsJsonAsync<Serie>(nomControleur, serie);
-                return response.EnsureSuccessStatusCode();
+                using var response = await client.PostAsJsonAsync<Serie>(client.BaseAddress, serie);
+                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
             }
             catch (Exception)
             {
-                return null;
+                return false;
             }
         }
 
-        public async Task<HttpResponseMessage> PutSerieAsync(string nomControleur, int id, Serie serie)
+        public async Task<bool> PutSerieAsync(int id, Serie serie)
         {
             try
             {
-                using var response = await client.PutAsJsonAsync<Serie>(String.Concat(nomControleur, "/", id), serie);
-                return response.EnsureSuccessStatusCode();
+                using var response = await client.PutAsJsonAsync<Serie>(String.Concat(client.BaseAddress, "/", id), serie);
+                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
             }
             catch (Exception)
             {
-                return null;
+                return false;
             }
         }
 
-        public async Task<HttpResponseMessage> DeleteSerieAsync(string nomControleur, int id)
+        public async Task<bool> DeleteSerieAsync(int id)
         {
             try
             {
-                using var response = await client.DeleteAsync(String.Concat(nomControleur, "/", id));
-                return response.EnsureSuccessStatusCode();
+                using var response = await client.DeleteAsync(String.Concat(client.BaseAddress, "/", id));
+                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
             }
             catch (Exception)
             {
-                return null;
+                return false;
             }
         }
     }

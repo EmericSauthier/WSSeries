@@ -7,10 +7,10 @@ namespace WSSeriesMvvm.Services
 {
     public interface IService
     {
-        Task<List<Serie>> GetSeriesAsync(string nomControleur);
+        Task<List<Serie>> GetSeriesAsync();
         Task<Serie> GetSerieAsync(int id);
-        Task<HttpResponseMessage> PutSerieAsync(int id, Serie serie);
-        Task<HttpResponseMessage> PostSerieAsync(Serie serie);
-        Task<HttpResponseMessage> DeleteSerieAsync();
+        Task<bool> PostSerieAsync(Serie serie);
+        Task<bool> PutSerieAsync(int id, Serie serie);
+        Task<bool> DeleteSerieAsync(int id);
     }
 }
