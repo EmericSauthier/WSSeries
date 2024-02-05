@@ -9,7 +9,7 @@ using WSSeries.Models.EntityFramework;
 
 namespace WSSeries.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/series")]
     [ApiController]
     public class SeriesController : ControllerBase
     {

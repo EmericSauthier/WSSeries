@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="WSSeriesMvvm.Views.CreationSeriePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WSSeriesMvvm.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <RelativePanel
+        Margin="15,10,15,10"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        AlignHorizontalCenterWithPanel="True">
+        <TextBlock
+            Name="txtBlock_titre"
+            Width="600"
+            Margin="0,5,0,0"
+            HorizontalTextAlignment="Center"
+            Text="Titre" />
+        <TextBox
+            Name="txtBox_titre"
+            Width="600"
+            Margin="0,5,0,5"
+            RelativePanel.Below="txtBlock_titre"
+            Text="{Binding SerieToAdd.Titre, Mode=TwoWay}" />
+
+        <TextBlock
+            Name="txtBlock_resume"
+            Width="600"
+            Margin="0,5,0,0"
+            HorizontalTextAlignment="Center"
+            RelativePanel.Below="txtBox_titre"
+            Text="Résumé" />
+        <TextBox
+            Name="txtBox_resume"
+            Width="600"
+            Height="100"
+            Margin="0,5,0,5"
+            RelativePanel.Below="txtBlock_resume"
+            Text="{Binding SerieToAdd.Resume, Mode=TwoWay}"
+            TextWrapping="Wrap" />
+
+        <TextBlock
+            Name="txtBlock_nbSaisons"
+            Width="100"
+            Margin="250,5,250,0"
+            HorizontalTextAlignment="Center"
+            RelativePanel.Below="txtBox_resume"
+            Text="Nb saisons" />
+        <TextBox
+            Name="txtBox_nbSaisons"
+            Width="100"
+            Margin="250,5,250,5"
+            RelativePanel.Below="txtBlock_nbSaisons"
+            Text="{Binding SerieToAdd.NbSaisons, Mode=TwoWay}" />
+
+        <TextBlock
+            Name="txtBlock_nbEpisodes"
+            Width="100"
+            Margin="250,5,250,0"
+            HorizontalTextAlignment="Center"
+            RelativePanel.Below="txtBox_nbSaisons"
+            Text="Nb épisodes" />
+        <TextBox
+            Name="txtBox_nbEpisodes"
+            Width="100"
+            Margin="250,5,250,5"
+            RelativePanel.Below="txtBlock_nbEpisodes"
+            Text="{Binding SerieToAdd.NbEpisodes, Mode=TwoWay}" />
+
+        <TextBlock
+            Name="txtBlock_annee"
+            Width="100"
+            Margin="250,5,250,0"
+            HorizontalTextAlignment="Center"
+            RelativePanel.Below="txtBox_nbEpisodes"
+            Text="Année création" />
+        <TextBox
+            Name="txtBox_annee"
+            Width="100"
+            Margin="250,5,250,5"
+            RelativePanel.Below="txtBlock_annee"
+            Text="{Binding SerieToAdd.AnneeCreation, Mode=TwoWay}" />
+
+        <TextBlock
+            Name="txtBlock_chaine"
+            Width="300"
+            Margin="150,5,150,0"
+            HorizontalTextAlignment="Center"
+            RelativePanel.Below="txtBox_annee"
+            Text="Chaîne" />
+        <TextBox
+            Name="txtBox_chaine"
+            Width="300"
+            Margin="150,5,150,5"
+            RelativePanel.Below="txtBlock_chaine"
+            Text="{Binding SerieToAdd.Network, Mode=TwoWay}" />
+
+        <Button
+            Name="bt_ajouter"
+            Width="300"
+            Margin="150,20,150,0"
+            Command="{Binding BtnPostSerie}"
+            Content="Ajouter"
+            RelativePanel.Below="txtBox_chaine" />
+    </RelativePanel>
+</Page>
