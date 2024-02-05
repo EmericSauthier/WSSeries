@@ -52,7 +52,8 @@ namespace WSSeriesMvvm
 
             m_window.Activate();
 
-            rootFrame.Navigate(typeof(CreationSeriePage));
+            // rootFrame.Navigate(typeof(CreationSeriePage));
+            rootFrame.Navigate(typeof(GererSeriePage));
         }
 
         private Window m_window;
