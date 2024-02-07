@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using WSSeriesMvvm.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,9 +29,16 @@ namespace WSSeriesMvvm
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        public void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            if (args.InvokedItem.ToString() == "Créer une série")
+            {
+                ContentFrame.Navigate(typeof(CreationSeriePage));
+            }
+            else if (args.InvokedItem.ToString() == "Gérer les séries")
+            {
+                ContentFrame.Navigate(typeof(GererSeriePage));
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace WSSeriesMvvm.ViewModels
 
             if (this.IdSerie == 0)
             {
+                this.SerieToShow = null;
                 MessageAsync("Entrez l'id de la série", "Erreur");
                 return;
             }
@@ -83,6 +85,7 @@ namespace WSSeriesMvvm.ViewModels
 
             if (result)
             {
+                this.SerieToShow = await service.GetSerieAsync(this.IdSerie);
                 MessageAsync("Modification réussie !", "Succès");
             }
             else
@@ -104,6 +107,8 @@ namespace WSSeriesMvvm.ViewModels
 
             if (result)
             {
+                this.IdSerie = 0;
+                this.SerieToShow = null;
                 MessageAsync("Suppression effectuée !", "Succès");
             }
             else

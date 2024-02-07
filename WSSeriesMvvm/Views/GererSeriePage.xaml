@@ -18,13 +18,13 @@
         <TextBlock
             Name="txtBlock_idserie"
             Width="200"
-            Margin="0,5,0,0"
+            Margin="200,5,200,0"
             HorizontalTextAlignment="Center"
-            Text="Titre" />
+            Text="N° de série à afficher" />
         <NumberBox
             Name="txtBox_idserie"
-            Width="200"
-            Margin="0,5,0,5"
+            Width="100"
+            Margin="250,5,250,5"
             RelativePanel.Below="txtBlock_idserie"
             Text="{Binding IdSerie, Mode=TwoWay}" />
 
@@ -34,15 +34,15 @@
             Margin="200,20,200,20"
             Command="{Binding BtnGetSerie}"
             Content="Rechercher"
-            RelativePanel.Below="txtBox_idserie"/>
+            RelativePanel.Below="txtBox_idserie" />
 
         <TextBlock
             Name="txtBlock_titre"
             Width="600"
             Margin="0,5,0,0"
             HorizontalTextAlignment="Center"
-            Text="Titre"
-            RelativePanel.Below="bt_rechercher" />
+            RelativePanel.Below="bt_rechercher"
+            Text="Titre" />
         <TextBox
             Name="txtBox_titre"
             Width="600"
@@ -126,7 +126,7 @@
             Name="bt_modifier"
             Width="140"
             Margin="150,20,5,0"
-            Command="{Binding BtnPostSerie}"
+            Command="{Binding BtnPutSerie}"
             Content="Modifier"
             RelativePanel.Below="txtBox_chaine" />
         <Button

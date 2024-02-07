@@ -47,13 +47,13 @@ namespace WSSeriesMvvm
             m_window = new MainWindow();
 
             Frame rootFrame = new Frame();
-            this.m_window.Content = rootFrame;
+            //this.m_window.Content = rootFrame;
             MainRoot = m_window.Content as FrameworkElement;
 
             m_window.Activate();
 
             // rootFrame.Navigate(typeof(CreationSeriePage));
-            rootFrame.Navigate(typeof(GererSeriePage));
+            // rootFrame.Navigate(typeof(GererSeriePage));
         }
 
         private Window m_window;
